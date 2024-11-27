@@ -3754,7 +3754,7 @@ CONFIG_u-boot-tools=y
 #
 # packagegroup-petalinux-openamp 
 #
-# CONFIG_packagegroup-petalinux-openamp is not set
+CONFIG_packagegroup-petalinux-openamp=y
 # CONFIG_packagegroup-petalinux-openamp-dbg is not set
 # CONFIG_packagegroup-petalinux-openamp-dev is not set
 
@@ -3830,15 +3830,17 @@ CONFIG_imagefeature-ssh-server-openssh=y
 CONFIG_imagefeature-hwcodecs=y
 # CONFIG_imagefeature-package-management is not set
 # CONFIG_imagefeature-debug-tweaks is not set
-# CONFIG_imagefeature-empty-root-password is not set
-# CONFIG_imagefeature-serial-autologin-root is not set
+CONFIG_imagefeature-empty-root-password=y
+CONFIG_imagefeature-serial-autologin-root=y
 # CONFIG_Init-manager-systemd is not set
 CONFIG_Init-manager-sysvinit=y
 
 #
 # user packages 
 #
+CONFIG_freertos-ocm=y
 # CONFIG_gpio-demo is not set
+CONFIG_linux-ocm=y
 # CONFIG_peekpoke is not set
 
 #
