@@ -2,18 +2,26 @@
  
 / {
  
-    gpio@41200000{
+    gpio@41200000{ /* reference from pl.dtsi* /
  
         compatible = "axi_led, generic-uio, ui_pdrv"; 
  
         status = "okay";
  
         };
+
+    gpio@41210000{  /* reference from pl.dtsi */
+ 
+        compatible = "axi_btns, generic-uio, ui_pdrv"; 
+ 
+        status = "okay";
+ 
+        };
  
  
-chosen {      
+chosen { /*Parameters defined by system firmware at boot time -> In practice, used to pass the kernel command line*/      
  
-bootargs = "console=ttyPS0,115200 earlyprintk uio_pdrv_genirq.of_id=generic-uio";
+bootargs = "console=ttyPS0,115200 earlyprintk uio_pdrv_genirq.of_id=generic-uio ";
  
 		}; 
   
@@ -38,10 +46,10 @@ bootargs = "console=ttyPS0,115200 earlyprintk uio_pdrv_genirq.of_id=generic-uio"
 			compatible = "shared-dma-pool";
 			reg = <0x3e808000 0x100000>;
 		};
-		rproc_0_reserved: rproc@0x00030010 {
+		rproc_0_reserved: rproc@00030000 {
 			no-map;
 			compatible = "shared-dma-pool";
-			reg = <0x00030010 0x0FF00000>;
+			reg = <0x00030000 0x0FFF7000>;
 		};
 	};
  
@@ -55,6 +63,14 @@ bootargs = "console=ttyPS0,115200 earlyprintk uio_pdrv_genirq.of_id=generic-uio"
  
  
 &axi_led
+ 
+        {
+ 
+            compatible = "generic-uio";
+ 
+        };
+
+&axi_btns
  
         {
  

@@ -1,6 +1,6 @@
 /*
 *
-* Writes on OCM addresses with high address config and initialize a mem buffer filling it for testing purposes.
+* Read some OCM values. Used to check if core1 writes succesfully on OCM directory
 *
 */
 
@@ -16,6 +16,7 @@
 #define NUM_FLOATS     (OCM_SIZE / sizeof(float))  // number of floats
 
 int main() {
+
     int mem_fd;
     volatile float *mem;
 
@@ -34,11 +35,6 @@ int main() {
         return -1;
     }
 
-    // fill ocm mem with increasing values
-    for (int i = 0; i < NUM_FLOATS; i++) {
-        mem[i] = (float)i;  // Escribir el índice como valor
-    }
-
     // simple check for first and last values
     printf("FIRST 10 values:\n");
     for (int i = 0; i < 10; i++) {
@@ -55,5 +51,6 @@ int main() {
     close(mem_fd);
 
     return 0;
-}
 
+
+}

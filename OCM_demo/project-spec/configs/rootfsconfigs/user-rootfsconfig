@@ -5,3 +5,4 @@ CONFIG_gpio-demo
 CONFIG_peekpoke
 CONFIG_freertos-ocm
 CONFIG_linux-ocm
+CONFIG_read-ocm

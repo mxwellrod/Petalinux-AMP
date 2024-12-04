@@ -3842,6 +3842,7 @@ CONFIG_freertos-ocm=y
 # CONFIG_gpio-demo is not set
 CONFIG_linux-ocm=y
 # CONFIG_peekpoke is not set
+CONFIG_read-ocm=y
 
 #
 # PetaLinux RootFS Settings

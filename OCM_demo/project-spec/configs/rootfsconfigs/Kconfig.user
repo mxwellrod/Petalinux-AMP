@@ -15,4 +15,8 @@ config peekpoke
 	 bool "peekpoke"
 	 help
 	
+config read-ocm  
+	 bool "read-ocm"
+	 help
+	
 endmenu
