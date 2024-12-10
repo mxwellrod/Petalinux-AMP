@@ -9,6 +9,7 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 
 SRC_URI = "file://index.html"
 SRC_URI += "file://zybo.png"
+SRC_URI += "file://style.css"
 SRC_URI += "file://cgi-bin/index.cgi"
 
 FILES:${PN} += "/srv/www"
@@ -20,6 +21,8 @@ do_install() {
 	     install -m 0644 ${S}/index.html ${D}/srv/www/index_original.html # name changed to avoid webserver to upload it, and uplod cgi instead
 	     install -d ${D}/srv/www
 	     install -m 0644 ${S}/zybo.png ${D}/srv/www
+	     install -d ${D}/srv/www
+	     install -m 0644 ${S}/style.css ${D}/srv/www
 	     install -d ${D}/srv/www/cgi-bin
        	 install -m 0755 ${S}/cgi-bin/index.cgi ${D}/srv/www/cgi-bin
 }

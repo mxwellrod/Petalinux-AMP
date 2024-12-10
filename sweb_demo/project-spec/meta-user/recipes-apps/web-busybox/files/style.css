@@ -1,9 +1,75 @@
+/* Estilo general para el cuerpo */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    text-align: center;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    flex-direction: column; /* Colocar los elementos en una columna */
+}
+
+/* Encabezado principal */
+h1 {
+    font-size: 2.5rem;
+    margin: 20px 0;
     color: #333;
 }
-img {
-    max-width: 80%;
-    height: auto;
+
+/* Contenedor principal que contiene la imagen y la información */
+.container {
+    display: flex;
+    flex-direction: row; /* Disposición en fila (lado a lado) */
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: flex-start; /* Alinear elementos al principio en el eje vertical */
+    margin: 20px;
 }
+
+/* Imagen */
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 50%;
+    height: auto; /*height adjust automatically according to width value to keep image proportion(1:1) */
+    border: 2px solid #ddd;
+    border-radius: 10px;
+}
+
+/* Contenedor para la información del servidor */
+.server-info {
+    text-align: left;
+    max-width: 600px;
+    margin-top: 0;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para las etiquetas clave de información */
+.server-info dt {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #555;
+}
+
+/* Estilo para los valores */
+.server-info dd {
+    margin: 0 0 10px 10px;
+    color: #777;
+}
+
+/* Añadir espacio entre las secciones de la información */
+.server-info dt, .server-info dd {
+    margin-bottom: 8px;
+}
+
+/* Asegurar que el contenido no se desborde */
+.server-info, img {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+

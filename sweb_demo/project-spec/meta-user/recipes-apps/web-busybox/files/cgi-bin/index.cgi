@@ -2,9 +2,9 @@
 
 #
 # Working principle of CGI script:
-# 1) Webserver(busybox) detect script as an executable(bin/sh)
-# 2) Receive a request, runs script, and take script html output
-# 3) Browser interprets HTML code and show it as a web page
+# 1) Webserver(busybox) detects script as an executable(bin/sh)
+# 2) Receives a request, runs the script, and sends the script's HTML output
+# 3) Browser interprets HTML and shows it as a webpage
 #
 
 # 1: HTTP header ending with a blank line
@@ -24,43 +24,53 @@ net_mac=$(cat /sys/class/net/eth0/address)
 net_ip_loc=$(ip a | grep inet | grep -vw lo | grep -v inet6 | cut -d \/ -f1 | sed 's/[^0-9\.]*//g')
 net_ip_ext=$(wget -q -O- http://ipecho.net/plain)
 
-# print HTML document with server data
+# Print HTML document with server data
 
-printf '<!DOCTYPE html>'
-printf '<html lang="en">'
-printf '<head>'
-printf '<meta http-equiv="content-type" content="text/html; charset=UTF-8">'
-printf '<title>Zybo webserver</title>'
-printf '</head>'
+printf '<!DOCTYPE html>\n'
+printf '<html lang="en">\n'
+printf '<head>\n'
+printf '<meta http-equiv="content-type" content="text/html; charset=UTF-8">\n'
+printf '<title>Zybo WebServer</title>\n'
+printf '<link rel="stylesheet" href="style.css">\n'
+printf '</head>\n'
 
-printf '<body>'
-printf 'Hello from your Zybo webserver...'
-printf '<br>'
-printf '<img src="../zybo.png" alt="Missing Image!">'
+printf '<body>\n'
+printf '<h1>Hello from your Zybo WebServer...</h1>\n'
+printf '<img src="../zybo.png" alt="Missing Image">\n'
 
-# Server info
-printf '<br>System<br>'
-printf 'Hostname: %s<br>' "${sys_host}"
-printf 'Time: %s<br>' "${sys_time}"
-printf 'Uptime: %.2f seconds<br>' ${sys_up}
+# Server info - Use a structured <dl> for better styling
+printf '<div class="server-info">\n'
+printf '<dl>\n'
 
-printf '<br>CPU<br>'
-printf 'Model: %s<br>' "${cpu_model}"
-printf 'Cores: %d<br>' ${cpu_cores}
-printf 'Load: %.2f<br>' ${sys_load}
+# System Info
+printf '<dt>System</dt>\n'
+printf '<dd>Hostname: %s</dd>\n' "${sys_host}"
+printf '<dd>Time: %s</dd>\n' "${sys_time}"
+printf '<dd>Uptime: %.2f seconds</dd>\n' ${sys_up}
 
-printf '<br>Memory<br>'
-printf 'Total: %d Mb<br>' ${mem_total}
-printf 'Used: %d Mb<br>' ${mem_used}
-printf 'Free: %d Mb<br>' ${mem_free}
+# CPU Info
+printf '<dt>CPU</dt>\n'
+printf '<dd>Model: %s</dd>\n' "${cpu_model}"
+printf '<dd>Cores: %d</dd>\n' ${cpu_cores}
+printf '<dd>Load: %.2f</dd>\n' ${sys_load}
 
-printf '<br>Network<br>'
-printf 'MAC Address: %s<br>' "${net_mac}"
-printf 'Local IP: %s<br>' "${net_ip_loc}"
-printf 'External IP: %s<br>' "${net_ip_ext}"
+# Memory Info
+printf '<dt>Memory</dt>\n'
+printf '<dd>Total: %d Mb</dd>\n' ${mem_total}
+printf '<dd>Used: %d Mb</dd>\n' ${mem_used}
+printf '<dd>Free: %d Mb</dd>\n' ${mem_free}
 
+# Network Info
+printf '<dt>Network</dt>\n'
+printf '<dd>MAC Address: %s</dd>\n' "${net_mac}"
+printf '<dd>Local IP: %s</dd>\n' "${net_ip_loc}"
+printf '<dd>External IP: %s</dd>\n' "${net_ip_ext}"
 
-printf '</body>'
-printf '</html>'
+printf '</dl>\n'
+printf '</div>\n'
+
+printf '</body>\n'
+printf '</html>\n'
+
 
 
