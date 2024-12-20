@@ -1,0 +1,83 @@
+/include/ "system-conf.dtsi"
+ 
+/ {
+ 
+    gpio@41200000{ /* reference from pl.dtsi* /
+ 
+        compatible = "axi_led, generic-uio, ui_pdrv"; 
+ 
+        status = "okay";
+ 
+        };
+
+    gpio@41210000{  /* reference from pl.dtsi */
+ 
+        compatible = "axi_btns, generic-uio, ui_pdrv"; 
+ 
+        status = "okay";
+ 
+        };
+ 
+ 
+chosen { /*Parameters defined by system firmware at boot time -> In practice, used to pass the kernel command line*/      
+ 
+bootargs = "console=ttyPS0,115200 earlyprintk uio_pdrv_genirq.of_id=generic-uio root=/dev/mmcblk0p2 rw rootfstype=ext4 rootwait";
+ 
+		}; 
+  
+};
+
+ 
+&axi_led
+ 
+        {
+ 
+            compatible = "generic-uio";
+ 
+        };
+
+&axi_btns
+ 
+        {
+ 
+            compatible = "generic-uio";
+ 
+        };
+
+/*
+/{
+	reserved-memory {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+		vdev0vring0: vdev0vring0@3e800000 {
+			no-map;
+			compatible = "shared-dma-pool";
+			reg = <0x3e800000 0x4000>;
+		};
+		vdev0vring1: vdev0vring1@3e804000 {
+			no-map;
+			compatible = "shared-dma-pool";
+			reg = <0x3e804000 0x4000>;
+		};
+		vdev0buffer: vdev0buffer@3e808000 {
+			no-map;
+			compatible = "shared-dma-pool";
+			reg = <0x3e808000 0x100000>;
+		};
+		rproc_0_reserved: rproc@00030000 {
+			no-map;
+			compatible = "shared-dma-pool";
+			reg = <0x00030000  0x08000000>;
+		};
+	};
+ 
+	remoteproc0: remoteproc@0 {
+		compatible = "xlnx,zynq_remoteproc";
+		firmware = "firmware";
+		memory-region = <&rproc_0_reserved>, <&vdev0buffer>, <&vdev0vring0>, <&vdev0vring1>;
+		interrupt-parent = <&intc>;
+	};
+};
+*/
+ 

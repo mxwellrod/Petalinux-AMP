@@ -1,0 +1,9 @@
+[Match]
+Type=ether
+Name=!veth*
+KernelCommandLine=!nfsroot
+KernelCommandLine=!ip
+
+[Network]
+Address=155.210.159.130/24
+Gateway=155.210.159.254
